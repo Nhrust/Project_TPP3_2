@@ -1,0 +1,196 @@
+body{
+    font-family: Arial, sans-serif;
+    background-color: #e6e5e5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    gap: 20px;
+}
+
+.menu{
+    background-color: rgb(186, 179, 179);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+    width:96vw;
+    height: 10vh;
+}
+
+.container{
+    background-color: rgb(186, 179, 179);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+    height: 75vh;
+    width: 97vw;
+}
+
+.container .categories{
+    display: flex;
+    background-color: rgb(186, 179, 179);
+    padding: 20px;
+    border-radius: 5px;
+    border: 0.2vw solid #e6e5e5;
+    height: 5vh;
+    width: 94.5vw;
+}
+
+.Categ{
+    width: 20vw;
+    font-size: 16px;
+    margin-left: 10px;
+    padding: 10px;
+    text-align: center;
+    background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+    backdrop-filter: blur(10px);
+    border: 0.2vw solid rgba(255,255,255,0.3);
+    border-radius: 1vw;
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.Categ:hover{
+    border: 0.4vw inset rgba(252, 73, 73, 0.3);
+}
+
+.container .product{
+    display: flex;
+    margin-top: 10px;
+    background-color: rgb(186, 179, 179);
+    padding: 20px;
+    border-radius: 5px;
+    border: 0.2vw solid #e6e5e5;
+    height: 60vh;
+    width: 94.5vw;
+}
+
+.container .product .TopSale{
+    position: relative;
+    width: 300px;
+    margin-left: 1vw;
+    margin-top: 1vw;
+    transition: all 0.1s ease;
+}
+
+.container .product .TopSale .TopProd{
+    margin-left: 1vw;
+    width: 270px;
+    height: 230px;
+    background: linear-gradient(90deg, rgba(255,0,0,0.3), rgba(255,0,0,0.3));
+    backdrop-filter: blur(10px);
+    border: 0.2vw solid rgba(255,255,255,0.3);
+    box-shadow: 0 5px 25px rgba(255, 0, 0, 1);
+    border-radius: 8px;
+    z-index: 1;
+    transition: all 0.1s ease;
+}
+
+.container .product .TopSale .TopPrice{
+    position: relative;
+    width: 305px;
+    height: 80px;
+    font-size: 64px;
+    color: red;
+    margin: -40px auto 0;
+    background: #fff;
+    border: 0.2vw solid #ddd;
+    border-radius: 1vw;
+    z-index: 2;
+    box-shadow: 0 5px 25px rgba(255, 0, 0, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.1s ease;
+}
+
+.container .product .TopSale:hover .TopProd{
+    width: 300px;
+    height: 260px;
+    
+}
+
+.container .product .TopSale:hover .TopPrice{
+    border: 0.4vw solid rgb(190, 18, 18);
+    background-color: rgb(219, 122, 26);
+    width: 335px;
+    height: 110px;
+    color:yellow;
+}
+
+.Other{
+    position:relative;
+    margin-left: 2vw;
+    align-items: center;
+    display: flex;
+    border: 1px solid #ccc;
+    height: 400px;
+    overflow-y:auto;
+    box-shadow: 0 5px 25px rgba(255, 217, 0, 1);
+}
+
+.Prod{
+    margin-left: 4vw;
+}
+
+.ProdCard{
+    margin-left: 1vw;
+    width: 200px;
+    height: 170px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+    backdrop-filter: blur(10px);
+    border: 0.2vw solid rgba(255,255,255,0.3);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 1);
+    border-radius: 8px;
+    z-index: 1;
+    transition: all 0.1s ease;
+}
+
+.ProdPrice{
+    position: relative;
+    width: 235px;
+    height: 60px;
+    font-size: 32px;
+    color: black;
+    margin: -40px auto 0;
+    background: #fff;
+    border: 0.2vw solid #ddd;
+    border-radius: 1vw;
+    z-index: 2;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.1s ease;
+}
+
+.Prod:hover .ProdCard{
+    width: 240px;
+    height: 210px;
+}
+
+.Prod:hover .ProdPrice{
+    width: 275px;
+    height: 100px;
+    color: white;
+    background: black;
+}
+
+.Recomendation{
+    position:fixed;
+    align-items: center;
+    width:75vw;
+    margin-top: 22vw;
+    margin-left: 18vw;
+    background-color: white;
+    border: 1vw solid white;
+    border-radius: 1vw;
+    box-shadow: 0 5px 25px rgba(255, 217, 0, 1);
+}
