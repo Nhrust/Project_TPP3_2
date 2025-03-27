@@ -3,23 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/global.css">
     <link rel="stylesheet" href="../static/css/admin.css">
     <title>Admin</title>
 </head>
 <body>
     <h1>Admin</h1>
-    <form action="add_product" method="GET">
-        <p>Name</p>
-        <input type="text" name="name">
-        <p>Price</p>
-        <input type="text" name="price">
-        <p>Category</p>
-        <input type="text" name="category">
-        <p>Picture</p>
-        <input type="text" name="picture">
-        <input type="submit" value="Add product">
-    </form>
+    <a href="/home">
+        <div class="back">Home</div>
+    </a>
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>name</th>
+            <th>price</th>
+            <th>category</th>
+            <th>picture</th>
+            <th></th>
+            <th></th>
+        </thead>
+        <tbody>
+            <tr>
+                <form action="add_product" method="get">
+                    <td></td>
+                    <td><input type="text" name="name"></td>
+                    <td><input type="text" name="price"></td>
+                    <td><input type="text" name="category"></td>
+                    <td><input type="text" name="picture"></td>
+                    <td></td>
+                    <td><input type="submit" value="Add product"></td>
+                </form>
+            </tr>
+        </tbody>
+    </table>
     <table>
         <thead>
             <th>ID</th>

@@ -7,7 +7,7 @@ import pyodbc
 import copy
 import os
 
-DEBUG = True
+DEBUG = False
 
 TABLE = "_TAB_"
 CHAT  = "_CHT_"
@@ -257,17 +257,17 @@ class BaseHandler (Handler):
 		debug_object.sql(command)
 		if not self._WRITE(command):
 			self.base.tables.pop(
-				self.base.tables.index(head.name))
+				self.base.tables.index(name))
 			debug_object.sql_out("Success")
 
 
 
 
 class TableHandler (Handler):
-	global DEBUG
-	DEBUG = DEBUG
-
 	def __init__(self, base, head: TableHead) -> None:
+		global DEBUG
+		self.DEBUG = DEBUG
+
 		super().__init__(base)
 		self.name = head.name
 		self.head = head
@@ -304,6 +304,19 @@ class TableHandler (Handler):
 			return self.get_rows(ID)[0]
 		except:
 			return None
+
+	def get_column(self, column_name: str):
+		selector = f"SELECT {column_name} FROM {self.name}"
+		debug_object.sql(selector)
+		finded = self._READ(selector)
+
+		if len(finded) == 0:
+			debug_object.sql_out(LWarning("Not found"))
+			return []
+
+		finded = [self.head.columns[self.head.get_column_index(column_name)].unconvert(row[0]) for row in finded]
+
+		return finded
 
 	def get_by(self, find_column: str, find_value: Any) -> List[List,]:
 		"""Return row by column value"""

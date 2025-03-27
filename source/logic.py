@@ -14,8 +14,8 @@ def hash(password):
 class Account (debug_object):
 
 	def __init__(self, base: Base, login: str, password: int, sql_sync=True):
-		
-		self.DEBUG = True
+		global DEBUG
+		self.DEBUG = DEBUG
 		
 		self.login = login
 		self.password = password
@@ -54,7 +54,8 @@ class AccountsManager (debug_object):
 	)
 
 	def __init__(self, base: Base):
-		self.DEBUG = True
+		global DEBUG
+		self.DEBUG = DEBUG
 		
 		self.base = base
 
@@ -178,6 +179,9 @@ class Product:
 	]
 
 	def __init__(self, ID: int, name: str, price: float, category: str, picture: str):
+		global DEBUG
+		self.DEBUG = DEBUG
+
 		self.ID = ID
 		self.name = name
 		self.price = price
@@ -197,11 +201,13 @@ class Product:
 
 
 class ProductManager:
-
 	ProductsTableName = TABLE + "products"
 	ProductsHead = TableHead(ProductsTableName, *Product.Columns)
 
 	def __init__ (self, base: Base):
+		global DEBUG
+		self.DEBUG = DEBUG
+
 		self.base = base
 		with BaseHandler(base) as base_handle:
 			if self.ProductsTableName not in base.tables:
@@ -214,6 +220,13 @@ class ProductManager:
 		with TableHandler(self.base, self.ProductsHead) as products_handle:
 			finded = products_handle._READ(f"SELECT * FROM {self.ProductsTableName}")
 			finded = [[self.ProductsHead.columns[i].unconvert(value) for i, value in enumerate(row)] for row in finded]
-			print(finded)
 			result = [Product.unpack(i) for i in finded]
 			return result
+	
+	def get_categories(self):
+		with TableHandler(self.base, self.ProductsHead) as product_handle:
+			finded = product_handle.get_column("category")
+			print(finded)
+			categories = set(finded)
+			print(categories)
+			return categories

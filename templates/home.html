@@ -12,11 +12,9 @@
         <div class="menu"></div>
         <div class="container">
             <div class="categories">
-                <buttom class="Categ">Машинки</buttom>
-                <buttom class="Categ">Огнестрел</buttom>
-                <buttom class="Categ">Документы</buttom>
-                <buttom class="Categ">Детское</buttom>
-                <buttom class="Categ">БДСМ Игрушки</buttom>
+                {% for i in categories %}
+                    <buttom class="Categ">{{i}}</buttom>
+                {% endfor %}
             </div>
             <div class="product">
                 <div class="TopSale">
