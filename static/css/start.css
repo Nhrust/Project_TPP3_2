@@ -1,0 +1,48 @@
+body{
+    font-family: Arial, sans-serif;
+    background-color: #e6e5e5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.menu{
+    display: flex;
+    width: 50vw;
+    height: 30vw;
+    margin-top: 10vw;
+    background-color: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+    backdrop-filter: blur(10px);
+    border: 0.2vw solid rgba(255,255,255,0.3);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 1);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1vw;
+}
+
+.buttom{
+    margin-top: 1vw;
+    text-align: center;
+    line-height:6vw;
+    text-decoration: none;
+    font-size: 32px;
+    width: 40vw;
+    height: 7vw;
+    cursor: pointer;
+    border-radius: 2vw;
+    background-color: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+    backdrop-filter: blur(10px);
+    border: 0.2vw solid rgba(255,255,255,0.3);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 1);
+    transition: all 1s ease;
+}
+
+.buttom:hover{
+    width:45vw;
+    height:13vw;
+    line-height:12vw;
+    font-size:64px;
+    border: 0.4vw inset rgba(75, 75, 75, 0.3);
+}

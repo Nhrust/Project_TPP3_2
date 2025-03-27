@@ -4,7 +4,7 @@ from .logic import *
 
 DEBUG = True
 
-app = Flask(__name__, template_folder='../templates', static_folder="static")
+app = Flask(__name__, template_folder='../templates', static_folder='../static')
 
 base = Base("base")
 # base._drop_all_tables()
