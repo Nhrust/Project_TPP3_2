@@ -25,30 +25,14 @@
                 </div>
                 <p class="Recomendation">РЕКОМЕНДАЦИИ</p>
                 <div class="Other">
-                    <div class="Prod">
-                        <div class="ProdCard"></div>
-                        <div class="ProdPrice">5</div>
-                    </div>
-                    <div class="Prod">
-                        <div class="ProdCard"></div>
-                        <div class="ProdPrice">412</div>
-                    </div>
-                    <div class="Prod">
-                        <div class="ProdCard"></div>
-                        <div class="ProdPrice">1 почка</div>
-                    </div>
-                    <div class="Prod">
-                        <div class="ProdCard"></div>
-                        <div class="ProdPrice">66666</div>
-                    </div>
-                    <div class="Prod">
-                        <div class="ProdCard"></div>
-                        <div class="ProdPrice">душа</div>
-                    </div>
-                    <div class="Prod">
-                        <div class="ProdCard"></div>
-                        <div class="ProdPrice">залупа</div>
-                    </div>
+                    {% for i in products %}
+                        <div class="Prod">
+                            <div class="ProdCard"><img src="{{ i.picture }}" onerror="this.src='../static/404.png';"></div>
+                            <div class="ProdPrice">{{ i.price }}</div>
+                            <!-- {{ i.name }} -->
+                            <!-- {{ i.category }} -->
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

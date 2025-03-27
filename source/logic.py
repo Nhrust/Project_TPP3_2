@@ -167,3 +167,53 @@ class ClientManager:
 
 
 
+
+class Product:
+	Columns = [
+		Column("ID",       int, "int identity(0,1)", Flag.Default),
+		Column("name",     str, "varchar(1024)",     Flag.Encode),
+		Column("price",    float, "float",             Flag.Default),
+		Column("category", str, "varchar(1024)",     Flag.Encode),
+		Column("picture",  str, "varchar(1024)",     Flag.Encrypt)
+	]
+
+	def __init__(self, ID: int, name: str, price: float, category: str, picture: str):
+		self.ID = ID
+		self.name = name
+		self.price = price
+		self.category = category
+		self.picture = picture
+  
+	def pack(self) -> str:
+		return f"{self.ID},{self.name},{self.price},{self.category},{self.picture}"
+
+	# not a method
+	def unpack(response: list):
+		new = Product(None, None, None, None, None)
+		new.ID, new.name, new.price, new.category, new.picture = response
+		return new
+
+
+
+
+class ProductManager:
+
+	ProductsTableName = TABLE + "products"
+	ProductsHead = TableHead(ProductsTableName, *Product.Columns)
+
+	def __init__ (self, base: Base):
+		self.base = base
+		with BaseHandler(base) as base_handle:
+			if self.ProductsTableName not in base.tables:
+				base_handle.create_table(self.ProductsHead)
+			else:
+				with TableHandler(base, self.ProductsHead) as products_handle:
+					last_ID = products_handle._get_last_ID()
+
+	def get_all(self):
+		with TableHandler(self.base, self.ProductsHead) as products_handle:
+			finded = products_handle._READ(f"SELECT * FROM {self.ProductsTableName}")
+			finded = [[self.ProductsHead.columns[i].unconvert(value) for i, value in enumerate(row)] for row in finded]
+			print(finded)
+			result = [Product.unpack(i) for i in finded]
+			return result

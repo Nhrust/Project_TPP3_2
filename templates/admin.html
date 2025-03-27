@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/global.css">
+    <link rel="stylesheet" href="../static/css/admin.css">
+    <title>Admin</title>
+</head>
+<body>
+    <h1>Admin</h1>
+    <form action="add_product" method="GET">
+        <p>Name</p>
+        <input type="text" name="name">
+        <p>Price</p>
+        <input type="text" name="price">
+        <p>Category</p>
+        <input type="text" name="category">
+        <p>Picture</p>
+        <input type="text" name="picture">
+        <input type="submit" value="Add product">
+    </form>
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>name</th>
+            <th>price</th>
+            <th>category</th>
+            <th>picture</th>
+            <th></th>
+            <th></th>
+        </thead>
+        <tbody>
+            {% for i in products %}
+                <tr>
+                    <form action="/update_product" method="get">
+                        <td><input type="text" name="ID" value="{{ i.ID }}" readonly></td>
+                        <td><input type="text" name="name" value="{{ i.name }}"></td>
+                        <td><input type="text" name="price" value="{{ i.price }}"></td>
+                        <td><input type="text" name="category" value="{{ i.category }}"></td>
+                        <td><input type="text" name="picture" value="{{ i.picture }}"></td>
+                        <td><input type="submit" value="Update"></td>
+                        <td><input type="submit" value="Delete" formaction="/delete_product"></td>
+                    </form>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -144,6 +144,8 @@ class Column (object):
 		_type = int
 		if "char" in self.sql_type:
 			return f'{value}'
+		if "float" in self.sql_type:
+			return float(value)
 		return _type.__call__(value)
 	
 	def __repr__(self) -> str:
@@ -173,7 +175,7 @@ class TableHead (object):
 	def get_column_names(self) -> str:
 		return f"({', '.join([i.name for i in self.columns[1:]])})"
 	
-	def __repr__(self) -> str:
+	def __str__(self) -> str:
 		return f"{self.name} ({', '.join([str(i) for i in self.columns])})"
 
 
@@ -242,6 +244,7 @@ class BaseHandler (Handler):
 
 	def create_table(self, head: TableHead) -> None:
 		"""Creates new table"""
+		print(head)
 		command = f"CREATE TABLE {head}"
 		debug_object.sql(command)
 		if not self._WRITE(command):
@@ -350,6 +353,11 @@ class TableHandler (Handler):
 		column = str(column)
 		value = self.head.get_column(column).convert(value)
 		command = f"UPDATE {self.name} SET {column} = {value.__repr__()} WHERE {self.head.columns[0].name} = {row_ID}"
+		debug_object.sql(command)
+		self._WRITE(command)
+
+	def delete(self, row_ID: int) -> None:
+		command = f"DELETE {self.name} WHERE ID = {int(row_ID)}"
 		debug_object.sql(command)
 		self._WRITE(command)
 

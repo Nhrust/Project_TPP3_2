@@ -10,6 +10,7 @@ base = Base("base")
 # base._drop_all_tables()
 
 accounts = AccountsManager(base)
+products = ProductManager(base)
 clients = ClientManager()
 
 def get_account() -> Account:

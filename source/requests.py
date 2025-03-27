@@ -66,3 +66,34 @@ def logout():
 	ip = request.remote_addr
 	clients.remove(ip)
 	return redirect("/")
+
+@app.route("/add_product", methods=["GET"])
+def add_product():
+	name = request.args["name"]
+	price = request.args["price"]
+	category = request.args["category"]
+	picture = request.args["picture"]
+	with TableHandler(base, ProductManager.ProductsHead) as table_hendler:
+		table_hendler.add_row(name, price, category, picture)
+	return redirect("/admin")
+
+@app.route("/update_product", methods=["GET"])
+def update_product():
+	ID = request.args["ID"]
+	name = request.args["name"]
+	price = request.args["price"]
+	category = request.args["category"]
+	picture = request.args["picture"]
+	with TableHandler(base, ProductManager.ProductsHead) as table_hendler:
+		table_hendler.update(ID, "name", name) 
+		table_hendler.update(ID, "price", price) 
+		table_hendler.update(ID, "category", category) 
+		table_hendler.update(ID, "picture", picture) 
+	return redirect("/admin")
+
+@app.route("/delete_product", methods=["GET"])
+def delete_product():
+	ID = request.args["ID"]
+	with TableHandler(base, ProductManager.ProductsHead) as table_hendler:
+		table_hendler.delete(ID)
+	return redirect("/admin")
