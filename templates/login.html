@@ -8,14 +8,14 @@
     <title>Log In</title>
 </head>
 <body>
-    <div class="menu">
-        <h1>Log In</h1>
-        <form action="/auth" method="post">
-            <input type="name" name="login"/>
+    <div class="login">
+        <h1 class="title">Log In</h1>
+        <form action="/auth" method="post" class="login-form">
+            <input type="text" name="login"/>
             <input type="password" name="password"/>
-            <input type="submit" value="login">
+            <input type="submit" value="Log In">
         </form>
-        <a class="buttom" href="/signin">sigin</a>
+        <p class="footer-text">Нет аккаунта? <a href="/signin">Зарегистрироваться</a></p>
     </div>
 </body>
 </html>

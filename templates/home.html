@@ -8,31 +8,39 @@
     <title>Home</title>
 </head>
 <body>
-    <div class="main">
-        <div class="menu"></div>
-        <div class="container">
-            <div class="categories">
-                {% for i in categories %}
-                    <buttom class="Categ">{{i}}</buttom>
-                {% endfor %}
-            </div>
-            <div class="product">
-                <div class="TopSale">
-                    <div class="TopProd"></div>
-                    <div class="TopPrice">12.000</div>
-                </div>
-                <p class="Recomendation">РЕКОМЕНДАЦИИ</p>
-                <div class="Other">
-                    {% for i in products %}
-                        <div class="Prod">
-                            <div class="ProdCard"><img src="{{ i.picture }}" onerror="this.src='../static/404.png';"></div>
-                            <div class="ProdPrice">{{ i.price }}</div>
-                            <!-- {{ i.name }} -->
-                            <!-- {{ i.category }} -->
-                        </div>
+    <div class="top-bar">
+        <div class="site-name">Store</div>
+        <div class="button-bar">
+            <a href="/cart" class="cart-button">🛒</a>
+            <a href="/logout" class="logout-button small">Log Out</a>
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="main-content">
+        
+            <aside class="filters">
+                <h2>Категории</h2>
+                <ul>
+                    {% for i in categories %}
+                        <li><button class="Categ">{{ i }}</button></li>
                     {% endfor %}
+                </ul>
+            </aside>
+
+            <section class="products">
+                {% for i in products %}
+                <div class="Prod">
+                    <div class="ProdCard">
+                        <img src="{{ i.picture }}" onerror="this.src='../static/404.png';" alt="{{ i.name }}">
+                    </div>
+                    <div class="ProdName">{{ i.name }}</div>
+                    <div class="ProdCategory">{{ i.category }}</div>
+                    <div class="ProdPrice">{{ i.price }} ₽</div>
+                    <button class="ProdBuy">Добавить в корзину</button>
                 </div>
-            </div>
+                {% endfor %}
+            </section>
         </div>
     </div>
 </body>

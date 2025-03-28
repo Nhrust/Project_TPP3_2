@@ -27,3 +27,7 @@ def admin():
 	if account.login != "admin":
 		return redirect("/home",code=302)
 	return render_template("admin.html", products = products.get_all())
+
+@app.route("/cart")
+def cart():
+	return render_template("cart.html")

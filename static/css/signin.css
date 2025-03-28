@@ -1,48 +1,67 @@
-body{
-    font-family: Arial, sans-serif;
-    background-color: #e6e5e5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
+.signin {
+    background: var(--surface-color);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 400px;
 }
-
-.menu{
-    display: flex;
-    width: 50vw;
-    height: 30vw;
-    margin-top: 10vw;
-    background-color: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
-    backdrop-filter: blur(10px);
-    border: 0.2vw solid rgba(255,255,255,0.3);
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 1);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 1vw;
-}
-
-.buttom{
-    margin-top: 1vw;
+  
+.title {
     text-align: center;
-    line-height:4vw;
-    text-decoration: none;
-    font-size: 32px;
-    width: 20vw;
-    height: 4vw;
-    cursor: pointer;
-    border-radius: 2vw;
-    background-color: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
-    backdrop-filter: blur(10px);
-    border: 0.2vw solid rgba(255,255,255,0.3);
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 1);
-    transition: all 1s ease;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: var(--text-color);
 }
-
-.buttom:hover{
-    width:25vw;
-    height:8vw;
-    line-height:8vw;
-    font-size:64px;
-    border: 0.4vw inset rgba(75, 75, 75, 0.3);
+  
+.signin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+  
+.signin-form input {
+    padding: 0.75rem 1rem;
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--text-color);
+    transition: border 0.2s;
+}
+  
+.signin-form input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+  
+.signin-form button {
+    padding: 0.75rem 1rem;
+    background: var(--primary-color);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+  
+.signin-form button:hover {
+    background: var(--primary-hover);
+}
+  
+.footer-text {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+  
+.footer-text a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+  
+.footer-text a:hover {
+    text-decoration: underline;
 }
