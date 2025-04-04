@@ -36,8 +36,10 @@
                     </div>
                     <div class="ProdName">{{ i.name }}</div>
                     <div class="ProdCategory">{{ i.category }}</div>
-                    <div class="ProdPrice">{{ i.price }} ₽</div>
-                    <button class="ProdBuy">Добавить в корзину</button>
+                    <form action="/addtocard" method="post">
+                        <input type="text" name="ID" value="{{i.ID}}" style="display: none;">
+                        <input type="submit" value="{{i.price}} ₽" class="ProdBuy">
+                    </form>                    
                 </div>
                 {% endfor %}
             </section>
