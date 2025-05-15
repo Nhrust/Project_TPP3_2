@@ -413,7 +413,7 @@ class Base (debug_object):
 			f"trust_connection={sql_config["trust_connection"]};" \
 			f"encoding={sql_config["encoding"]};" \
 			f"Encrypt={sql_config["Encrypt"]};" \
-			f"TrustServerCertificate={["TrustServerCertificate"]};"
+			f"TrustServerCertificate={sql_config["TrustServerCertificate"]};"
 		self.debug("connection_request")
 	
 	def test_connection(self) -> ConnectionStatus:
