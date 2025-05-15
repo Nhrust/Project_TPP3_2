@@ -1,10 +1,9 @@
 from typing import Any, Callable, Iterable, Any, List
 
 from cryptography.fernet import Fernet
-import threading
 import colorama
 import pyodbc
-import copy
+import json
 import os
 
 DEBUG = False
@@ -404,14 +403,17 @@ class Base (debug_object):
 		self.tables = self._get_tables()
 	
 	def update_request(self) -> None:
+		sql_config = json.load(open("source/MSSQL.json", "r", encoding="utf-8"))
 		self.connection_request = \
-			f"Driver={self.driver};" \
-			f"Server={self.server};" \
-			f"Database={self.database};" \
-			f"UID={self.login};" \
-			f"PWD={self.password};" \
-			"trust_connection=yes;" \
-			"encoding=utf-8;"
+			f"Driver={sql_config["Driver"]};" \
+			f"Server={sql_config["Server"]};" \
+			f"Database={sql_config["Database"]};" \
+			f"UID={sql_config["UID"]};" \
+			f"PWD={sql_config["PWD"]};" \
+			f"trust_connection={sql_config["trust_connection"]};" \
+			f"encoding={sql_config["encoding"]};" \
+			f"Encrypt={sql_config["Encrypt"]};" \
+			f"TrustServerCertificate={["TrustServerCertificate"]};"
 		self.debug("connection_request")
 	
 	def test_connection(self) -> ConnectionStatus:
