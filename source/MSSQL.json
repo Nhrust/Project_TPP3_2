@@ -1,0 +1,11 @@
+{
+	"Driver": "", // 'SQL Server' for windows
+	"Server" : "",
+	"Database": "",
+	"UID": "",
+	"PWD": "",
+	"trust_connection": "yes",
+	"encoding": "utf-8",
+	"Encrypt": "no",
+	"TrustServerCertificate": "yes"
+}
