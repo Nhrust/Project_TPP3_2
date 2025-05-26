@@ -1,7 +1,7 @@
 {
-	"Driver": "", // 'SQL Server' for windows
-	"Server" : "",
-	"Database": "",
+	"Driver": "SQL Server", 
+	"Server" : "SQLEXPRESS",
+	"Database": "negri",
 	"UID": "",
 	"PWD": "",
 	"trust_connection": "yes",
