@@ -173,7 +173,7 @@ class Product:
 	Columns = [
 		Column("ID",       int, "int identity(0,1)", Flag.Default),
 		Column("name",     str, "varchar(1024)",     Flag.Encode),
-		Column("price",    float, "float",             Flag.Default),
+		Column("price",    float, "float",           Flag.Default),
 		Column("category", str, "varchar(1024)",     Flag.Encode),
 		Column("picture",  str, "varchar(1024)",     Flag.Encrypt)
 	]

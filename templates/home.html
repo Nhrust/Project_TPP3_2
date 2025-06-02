@@ -1,49 +1,46 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/global.css">
-    <link rel="stylesheet" href="../static/css/home.css">
-    <title>Home</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../static/css/global.css">
+	<link rel="stylesheet" href="../static/css/home.css">
 </head>
 <body>
-    <div class="top-bar">
-        <div class="site-name">Store</div>
-        <div class="button-bar">
-            <a href="/cart" class="cart-button">🛒</a>
-            <a href="/logout" class="logout-button small">Log Out</a>
-        </div>
-    </div>
-
-    <div class="content-wrapper">
-        <div class="main-content">
-        
-            <aside class="filters">
-                <h2>Категории</h2>
-                <ul>
-                    {% for i in categories %}
-                        <li><button class="Categ">{{ i }}</button></li>
-                    {% endfor %}
-                </ul>
-            </aside>
-
-            <section class="products">
-                {% for i in products %}
-                <div class="Prod">
-                    <div class="ProdCard">
-                        <img src="{{ i.picture }}" onerror="this.src='../static/404.png';" alt="{{ i.name }}">
-                    </div>
-                    <div class="ProdName">{{ i.name }}</div>
-                    <div class="ProdCategory">{{ i.category }}</div>
-                    <form action="/addtocard" method="post">
-                        <input type="text" name="ID" value="{{i.ID}}" style="display: none;">
-                        <input type="submit" value="{{i.price}} ₽" class="ProdBuy">
-                    </form>                    
-                </div>
-                {% endfor %}
-            </section>
-        </div>
-    </div>
+	<div class="top">
+		<div class="title">
+			<h1>The best market</h1>
+		</div>
+		<div class="cart_field">
+			<div class="btn">Cart</div>
+		</div>
+		<div class="exit_field">
+			<div class="btn">Log out</div>
+		</div>
+	</div>
+	<div class="bot">
+		<div class="left">
+			<div class="categories">
+				{% for category in categories %}
+					<div class="category" v="0"><p>{{ category }}</p><svg viewbox="0 0 24 24"></svg></div>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="right">
+			<div class="products_scroll">
+				<div class="products_domain">
+					{% for product in products %}
+						<div class="product">
+							<img src="{{ product.picture }}">
+							<p>{{ product.name }}</p>
+							<btn>{{ product.price }}</btn>
+							<metaD class="{{ product.category }}" id="{{ product.ID }}"></metaD>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../static/js/home.js"></script>
 </body>
 </html>

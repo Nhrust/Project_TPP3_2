@@ -15,8 +15,10 @@ def sigin():
 @app.route("/home")
 def home():
 	account = get_account()
+	
 	if account == None:
-		return redirect("/login",code=302)
+		return redirect("/login", code=302)
+	
 	return render_template("home.html", products = products.get_all(), categories = products.get_categories())
 
 @app.route("/admin")
