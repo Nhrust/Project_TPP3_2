@@ -1,9 +1,10 @@
   
 .login {
-    background: var(--surface-color);
+    background: color-mix(in srgb, var(--surface-color), transparent 25%);
+    backdrop-filter: blur(0.5em);
     padding: 2.5rem;
     border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    /* box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); */
     width: 100%;
     max-width: 400px;
 }
@@ -44,7 +45,7 @@
     color: #fff;
     font-size: 1rem;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: 0.2s;
 }
   
 .login-form button:hover {

@@ -25,11 +25,15 @@ def home():
 def admin():
 	account = get_account()
 	if account == None:
-		return redirect("/login",code=302)
+		return redirect("/login", code=302)
 	if account.login != "admin":
-		return redirect("/home",code=302)
+		return redirect("/home", code=302)
 	return render_template("admin.html", products = products.get_all())
 
 @app.route("/cart")
 def cart():
-	return render_template("cart.html")
+	account = get_account()
+	if not account:
+		return redirect("/login", code=302)
+		
+	return render_template("cart.html", products=account.get_products(products))

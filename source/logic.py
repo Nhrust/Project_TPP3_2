@@ -12,31 +12,62 @@ def hash(password):
 	return (a_number * HASH_KEY) % SQL_BIGINT_MAX_VALUE
 
 class Account (debug_object):
-
-	def __init__(self, base: Base, login: str, password: int, sql_sync=True):
+	def __init__(self, base: Base, login: str, password: int, cart: str, sql_sync=True):
 		global DEBUG
 		self.DEBUG = DEBUG
 		
 		self.login = login
 		self.password = password
 		self.name = "Untitled"
+		self.cart = cart if cart not in ("", "None", None) else str(dict())
 		
 		if not sql_sync: return
 
 		with TableHandler(base, AccountsManager.Head) as handle:
-			self.ID = handle.add_row(self.login, self.password, self.name)
+			self.ID = handle.add_row(self.login, self.password, self.name, self.cart)
 			self.name = f"User-{self.ID}"
 			handle.update(self.ID, "name", self.name)
 	
 	def update_on_base(self, base: Base):
 		with TableHandler(base, AccountsManager.Head) as handle:
-			handle.update(self.ID, "name",   self.name  )
+			handle.update(self.ID, "name", self.name)
+			handle.update(self.ID, "cart", self.cart)
+	
+	def add_to_cart(self, product_id: int):
+		d = eval(self.cart)
+		if not isinstance(d, dict):
+			d = dict()
+
+		if product_id not in d:
+			d[product_id] = 1
+		else:
+			d[product_id] += 1
+		
+		self.cart = str(d)
+	
+	def remove_from_cart(self, product_id: int):
+		d = dict(eval(self.cart))
+
+		if product_id not in d:
+			print(f"Error, priduct '{product_id}' not in cart: {d}")
+		elif d[product_id] == 1:
+			del d[product_id]
+		else:
+			d[product_id] -= 1
+		
+		self.cart = str(d)
+	
+	def get_products(self, products):
+		result = products.get_from_cart(eval(self.cart))
+		return result
 	
 	# not a method
 	def unpack(base, response: list):
-		new = Account(None, None, None, sql_sync=False)
-		new.ID, new.login, new.password, new.name = response
+		new = Account(None, None, None, None, False)
+		new.ID, new.login, new.password, new.name, new.cart = response
+		new.cart = new.cart if new.cart not in ("", "None", None) else str(dict())
 		return new
+
 
 	def __repr__(self):
 		return f"{self.name},{self.ID}"
@@ -51,6 +82,7 @@ class AccountsManager (debug_object):
 		Column("login",    str, "varchar(32)",              Flag.Default),
 		Column("password", int, "BIGINT",                   Flag.Default),
 		Column("name",     str, "varchar(256)",             Flag.Encode ),
+		Column("cart",     str, "varchar(1024)",            Flag.Default),
 	)
 
 	def __init__(self, base: Base):
@@ -112,7 +144,7 @@ class AccountsManager (debug_object):
 
 	def add(self, login: str, password: str) -> Account:
 		"""Создаёт аккаунт на базе и возвращает его"""
-		return Account(self.base, login, hash(password))
+		return Account(self.base, login, hash(password), "{}")
 
 	def delete(self, ID: int):
 		pass
@@ -226,7 +258,12 @@ class ProductManager:
 	def get_categories(self):
 		with TableHandler(self.base, self.ProductsHead) as product_handle:
 			finded = product_handle.get_column("category")
-			print(finded)
 			categories = set(finded)
-			print(categories)
 			return categories
+	
+	def get_from_cart(self, cart: dict):
+		with TableHandler(self.base, self.ProductsHead) as product_handle:
+			result = []
+			for key in cart:
+				result.append( product_handle.get_row(int(key)) )
+			return [Product.unpack(i) for i in result]

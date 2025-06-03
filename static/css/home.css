@@ -2,14 +2,6 @@ html, body {
     overflow-y: hidden;
 }
 
-::-webkit-scrollbar {
-    width: 1em;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #1f1f1f;
-}
-
 .top {
     position: absolute;
     display: flex;
@@ -18,9 +10,9 @@ html, body {
     left: 0;
     top: 0;
     z-index: 1;
-    box-shadow: 0 0 1em 1em var(--bg-color);
 
-    background: var(--surface-color);
+    background: color-mix(in srgb, var(--surface-color), transparent 25%);
+    backdrop-filter: blur(0.5em);
 }
 
 .top .title {
@@ -45,6 +37,10 @@ html, body {
     width: 10em;
 }
 
+a {
+    text-decoration: none;
+}
+
 .top .btn {
     width: 9em;
     height: 2em;
@@ -57,6 +53,10 @@ html, body {
     background: var(--primary-color);
 }
 
+.top .btn:hover {
+    background: var(--primary-hover);
+}
+
 .bot {
     position: absolute;
     width: 100%;
@@ -64,7 +64,7 @@ html, body {
 
     top: var(--top-menu-height);
 
-    background: var(--bg-color);
+    /* background: var(--bg-color); */
 }
 
 .left {
@@ -82,7 +82,8 @@ html, body {
     z-index: 3;
 
     border-radius: 0 1em 1em 0;
-    background: var(--surface-color);
+    background: color-mix(in srgb, var(--surface-color), transparent 25%);
+    backdrop-filter: blur(0.5em);
 }
 
 .category {
@@ -115,11 +116,11 @@ html, body {
 
 .category > svg * {
     fill: none;
-    stroke: var(--box-color);
+    stroke: var(--primary-color);
 }
 
 .category:hover > svg * {
-    stroke: var(--box-hover);
+    stroke: var(--primary-hover);
 }
 
 .right {
@@ -152,7 +153,8 @@ html, body {
     border-radius: 1em;
     margin: 1em;
 
-    background: var(--surface-color);
+    background: color-mix(in srgb, var(--surface-color), transparent 25%);
+    backdrop-filter: blur(0.5em);
     box-shadow: 0 0 0.5em 0.5em rgba(0, 0, 0, 0.125);
 }
 

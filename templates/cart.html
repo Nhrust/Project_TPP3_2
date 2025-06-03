@@ -5,9 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/global.css">
     <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="stylesheet" href="../static/css/cart.css">
     <title>Cart</title>
 </head>
 <body>
-    <h1>Корзина товаров</h1>
+    <div class="main-image">
+        <video autoplay muted loop id="myVideo">
+            <source src="../static/assets/vid.mp4" type="video/mp4">
+        </video>
+    </div>
+
+	<div class="top">
+		<div class="title">
+			<h1>Your cart</h1>
+		</div>
+		<div class="cart_field">
+			<a href="/home">
+				<div class="btn">Home</div>
+			</a>
+		</div>
+		<div class="exit_field">
+			<a href="/logout">
+				<div class="btn">Log out</div>
+			</a>
+		</div>
+	</div>
+    <div class="cart_main">
+        <div class="products_scroll">
+            <div class="products_domain">
+                {% for product in products %}
+                    <div class="product">
+                        <img src="{{ product.picture }}">
+                        <p>{{ product.name }}</p>
+                        <buttons>
+                            <btn class="remove">-</btn>
+                            <p>{{ product.price }}</p>
+                            <btn class="add">+</btn>
+                        </buttons>
+                        <metaD class="{{ product.category }}" id="{{ product.ID }}"></metaD>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="foot">
+		<div class="pay_field">
+			<a target="_blank">
+				<div class="btn">Оплатить...</div>
+			</a>
+		</div>
+	</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+	<script src="../static/js/cart.js"></script>
 </body>
 </html>

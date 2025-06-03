@@ -10,13 +10,14 @@ table {
     border-spacing: 0 0.5rem;
     margin-bottom: 2rem;
     border-collapse: collapse;
+    background: color-mix(in srgb, var(--surface-color), transparent 25%);
+    backdrop-filter: blur(0.5em);
 }
   
 td, th {
     padding: 0.75rem;
-    background: var(--surface-color);
     color: var(--text-color);
-    border-bottom: 1px solid var(--border-color);
+    /* border-bottom: 1px solid var(--border-color); */
     text-align: left;
 }
   
@@ -43,7 +44,6 @@ input[type="submit"] {
     color: white;
     font-size: 0.9rem;
     cursor: pointer;
-    transition: background 0.2s;
 }
   
 input[type="submit"]:hover {
@@ -62,7 +62,8 @@ input[type="submit"]:hover {
     padding: 0 2rem;
     height: var(--top-menu-height);
     width: 100%;
-    background: var(--surface-color);
+    background: color-mix(in srgb, var(--surface-color), transparent 25%);
+    backdrop-filter: blur(0.5em);
     border-bottom: 1px solid var(--border-color);
     flex-shrink: 0;
     box-sizing: border-box;
@@ -80,7 +81,6 @@ input[type="submit"]:hover {
     border-radius: 8px;
     color: var(--link-color);
     text-decoration: none;
-    transition: background 0.2s;
     position: relative;
 }
   
@@ -103,7 +103,7 @@ input[type="submit"]:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--bg-color);
+    /* background: var(--bg-color); */
     display: flex;
     flex-direction: column;
     padding: 1rem 2rem;
@@ -114,7 +114,8 @@ input[type="submit"]:hover {
   
   .form-fixed {
     flex: 0 0 auto;
-    background: var(--surface-color);
+    background: color-mix(in srgb, var(--surface-color), transparent 25%);
+    backdrop-filter: blur(0.5em);
     border-radius: 12px;
     padding: 1rem;
     box-shadow: 0 2px 6px rgba(0,0,0,0.4);

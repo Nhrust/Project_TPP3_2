@@ -6,7 +6,7 @@ import pyodbc
 import json
 import os
 
-DEBUG = False
+DEBUG = True
 
 TABLE = "_TAB_"
 CHAT  = "_CHT_"

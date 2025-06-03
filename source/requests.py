@@ -64,6 +64,7 @@ def new_auth():
 @app.route("/logout")
 def logout():
 	ip = request.remote_addr
+	get_account().update_on_base(base)
 	clients.remove(ip)
 	return redirect("/")
 
