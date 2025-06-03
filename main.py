@@ -7,4 +7,5 @@ if not accounts.check_login("admin"):
 	admin.name = "Админ"
 	admin.update_on_base(base)
 
-socket.run(app, debug=True, host="0.0.0.0")
+print("Started)")
+socket.run(app, debug=False, host="0.0.0.0")

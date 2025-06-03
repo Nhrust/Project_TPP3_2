@@ -105,7 +105,7 @@ class AccountsManager (debug_object):
 			
 			for response in finded:
 				user_data = Account.unpack(self.base, response)
-				if hash(password) == user_data.password or password == user_data.password: # !!! DEBUG ##################################
+				if hash(password) == user_data.password:
 					return user_data
 			
 			return UI_texts.WrongPass

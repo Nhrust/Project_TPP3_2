@@ -4,7 +4,7 @@ from .sql import *
 from .logic import *
 from os import path
 
-DEBUG = True
+DEBUG = False
 
 app = Flask(__name__, template_folder='../templates', static_folder='../static')
 socket = SocketIO(app)

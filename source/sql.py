@@ -6,7 +6,7 @@ import pyodbc
 import json
 import os
 
-DEBUG = True
+DEBUG = False
 
 TABLE = "_TAB_"
 CHAT  = "_CHT_"
@@ -75,7 +75,9 @@ class debug_object (object):
 	
 	def debug(self, name) -> None:
 		result = object.__getattribute__(self, name)
-		print(f"{CValue} {LName(name)} = {result}")
+		global DEBUG
+		if DEBUG:
+			print(f"{CValue} {LName(name)} = {result}")
 	
 	def out(*string) -> None:
 		if DEBUG: print(f"{COut} {' '.join(tuple(map(str, string)))}")
