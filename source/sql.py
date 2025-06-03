@@ -201,8 +201,8 @@ class Handler (debug_object):
 			error_id = tupl[0]
 			text = tupl[1]
 			
-			while ("[" in text) and ("]" in text):
-				text = text.replace(text[text.index("["):text.index("]")+1], "")
+			while ("[' in text) and (']" in text):
+				text = text.replace(text[text.index("['):text.index(']")+1], "")
 			while text[0] == " ":
 				text = text[1:]
 			
@@ -407,15 +407,15 @@ class Base (debug_object):
 	def update_request(self) -> None:
 		sql_config = json.load(open("source/MSSQL.json", "r", encoding="utf-8"))
 		self.connection_request = \
-			f"Driver={sql_config["Driver"]};" \
-			f"Server={sql_config["Server"]};" \
-			f"Database={sql_config["Database"]};" \
-			f"UID={sql_config["UID"]};" \
-			f"PWD={sql_config["PWD"]};" \
-			f"trust_connection={sql_config["trust_connection"]};" \
-			f"encoding={sql_config["encoding"]};" \
-			f"Encrypt={sql_config["Encrypt"]};" \
-			f"TrustServerCertificate={sql_config["TrustServerCertificate"]};"
+			f"Driver={sql_config['Driver']};" \
+			f"Server={sql_config['Server']};" \
+			f"Database={sql_config['Database']};" \
+			f"UID={sql_config['UID']};" \
+			f"PWD={sql_config['PWD']};" \
+			f"trust_connection={sql_config['trust_connection']};" \
+			f"encoding={sql_config['encoding']};" \
+			f"Encrypt={sql_config['Encrypt']};" \
+			f"TrustServerCertificate={sql_config['TrustServerCertificate']};"
 		self.debug("connection_request")
 	
 	def test_connection(self) -> ConnectionStatus:
@@ -434,8 +434,8 @@ class Base (debug_object):
 			errors_list = []
 
 			for text in list(set(error_data.split(";"))):
-				while ("[" in text) and ("]" in text):
-					text = text.replace(text[text.index("["):text.index("]")+1], "")
+				while ("[' in text) and (']" in text):
+					text = text.replace(text[text.index("['):text.index(']")+1], "")
 				while text[0] == " ":
 					text = text[1:]
 				errors_list.append(text)
